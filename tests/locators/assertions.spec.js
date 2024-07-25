@@ -36,7 +36,7 @@ test.describe('Assertions', ()=>{
         await page.pause()
     })
 
-    test.only("Screenshots", async ({page}) => {
+    test("Screenshots", async ({page}) => {
         const userName = 'Stanislav'
 
         await page.goto('/');
