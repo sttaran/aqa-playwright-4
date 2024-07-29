@@ -1,7 +1,7 @@
 import {expect, test} from "@playwright/test";
 import WelcomePage from "../../src/pageObjects/welcomePage/WelcomePage.js";
 
-test.describe("Login", ()=>{
+test.describe("Login @login", ()=>{
     test.beforeEach(async ({page})=>{
         await page.goto('/')
         const signInButton = page.locator('.header_signin')
@@ -31,7 +31,7 @@ test.describe("Login", ()=>{
 })
 
 
-test.describe.only("Login POM", ()=>{
+test.describe("Login POM", ()=>{
     let signInPopup
 
     test.beforeEach(async ({page})=>{
@@ -40,9 +40,10 @@ test.describe.only("Login POM", ()=>{
         signInPopup = await welcomePage.header.clickSignInButton()
     })
 
-    test('empty email', async({page})=>{
+    test.only('empty email @login', async({page})=>{
         await signInPopup.emailInput.focus()
         await signInPopup.emailInput.blur()
+        // await page.pause()
 
         await expect(signInPopup.emailValidationMessage).toHaveText('Email required');
         await expect(signInPopup.emailInput).toHaveCSS('border-color', 'rgb(220, 53, 69)');
