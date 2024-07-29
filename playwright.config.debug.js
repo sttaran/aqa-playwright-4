@@ -8,8 +8,8 @@ import {config as appConfig} from "./config/config.js";
  * https://github.com/motdotla/dotenv
  */
 dotenv.config({
-  // path: './.env'
-  path: process.env.ENV === 'dev' ? './env/.env.dev' : './env/.env.stage'
+  path: './.env'
+  // path: process.env.ENV === 'dev' ? './env/.env.dev' : './env/.env.stage'
 });
 
 /**
@@ -21,13 +21,12 @@ const config =  defineConfig({
   testIgnore: '/tests/**/*.skip.spec.js',
   globalSetup: process.env.ENV === 'stage' ? './global.setup.js' : undefined,
   globalTeardown: './global.teardown.js',
-  maxFailures: 10,
   /* Run tests in files in parallel */
   fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: 0,
+  retries: 1,
   /* Opt out of parallel tests on CI. */
   workers: 3,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
