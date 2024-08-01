@@ -22,8 +22,6 @@ test.describe("Playwright todo app", ()=> {
   test('has title @smoke', async ({ page }) => {
     console.log("TEST 1")
     await page.goto('https://playwright.dev/');
-
-    await page.pause()
     // Expect a title "to contain" a substring.
     await expect(page).toHaveTitle(/Playwright/);
   });

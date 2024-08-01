@@ -23,18 +23,44 @@ const config =  defineConfig({
   globalTeardown: './global.teardown.js',
   /* Run tests in files in parallel */
   fullyParallel: false,
+  timeout: 60_000,
+  expect: {
+    timeout: 6_000
+  },
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
+  maxFailures: 10,
   /* Retry on CI only */
   retries: 1,
   /* Opt out of parallel tests on CI. */
   workers: 3,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: [
+    ['html', {open: process.env.CI ? 'never' : 'on-failure'}],
+    [process.env.CI ? 'dot' : 'list'],
+    ["playwright-testrail-reporter"]
+    // [
+    //   'playwright-qase-reporter',
+    //   {
+    //     testops: {
+    //       // run: {
+    //       //   complete: true
+    //       // },
+    //       uploadAttachments: true,
+    //       api: {
+    //         token: process.env.QASE_API_KEY,
+    //       },
+    //       project: process.env.QASE_PROJECT_KEY,
+    //     },
+    //   },
+    // ],
+      // ['./reporters/MyReporter']
+    // ['junit', { outputFile: 'results.xml' }],
+  ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     testIdAttribute: 'data-qa',
-    headless: false,
+    headless: true,
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: appConfig.baseURL,
     httpCredentials: appConfig.httpCredentials,
@@ -43,9 +69,12 @@ const config =  defineConfig({
       height: 1080
     },
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'retain-on-failure',
-    // video: 'on',
-    screenshot: 'only-on-failure'
+    // video: 'retain-on-failure',
+    // trace: 'retain-on-failure',
+    // screenshot: 'only-on-failure'
+    video: 'on',
+    trace: 'on',
+    screenshot: 'on'
   },
 
   /* Configure projects for major browsers */

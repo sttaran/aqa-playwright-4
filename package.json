@@ -19,6 +19,8 @@
     "@types/node": "^20.14.11"
   },
   "dependencies": {
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "playwright-qase-reporter": "^2.0.9",
+    "playwright-testrail-reporter": "^1.2.1"
   }
 }
