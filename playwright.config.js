@@ -31,11 +31,16 @@ const config =  defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: 3,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: [
+      ['html', {open: process.env.CI ? 'never' : 'on-failure'}],
+      [process.env.CI ? 'dot' : 'list'],
+    ['json', { outputFile: 'results.json' }],
+
+  ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     testIdAttribute: 'data-qa',
-    headless: false,
+    headless: true,
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: appConfig.baseURL,
     httpCredentials: appConfig.httpCredentials,

@@ -31,7 +31,7 @@ test.describe("Login @login", ()=>{
 })
 
 
-test.describe("Login POM", ()=>{
+test.describe.only("Login POM", ()=>{
     let signInPopup
 
     test.beforeEach(async ({page})=>{
@@ -40,16 +40,16 @@ test.describe("Login POM", ()=>{
         signInPopup = await welcomePage.header.clickSignInButton()
     })
 
-    test.only('empty email @login', async({page})=>{
+    test('C1: empty email @login', async({page})=>{
         await signInPopup.emailInput.focus()
         await signInPopup.emailInput.blur()
         // await page.pause()
 
-        await expect(signInPopup.emailValidationMessage).toHaveText('Email required');
+        await expect(signInPopup.emailValidationMessage).toHaveText('Email required!');
         await expect(signInPopup.emailInput).toHaveCSS('border-color', 'rgb(220, 53, 69)');
     })
 
-    test('wrong format email', async({page})=>{
+    test('C2: wrong format email', async({page})=>{
         await signInPopup.fill({
             email: 'wrong#kkkk',
             password: '123'
@@ -59,7 +59,9 @@ test.describe("Login POM", ()=>{
         await expect(signInPopup.emailInput).toHaveCSS('border-color', 'rgb(220, 53, 69)');
     })
 
-    test('empty password', async({page})=>{
+    test('C3: empty password', async({page})=>{
+        test.setTimeout(15_000)
+
         await signInPopup.passwordInput.focus()
         await signInPopup.passwordInput.blur()
 
