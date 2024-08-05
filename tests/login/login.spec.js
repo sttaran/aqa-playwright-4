@@ -31,7 +31,7 @@ test.describe("Login @login", ()=>{
 })
 
 
-test.describe.only("Login POM", ()=>{
+test.describe("Login POM", ()=>{
     let signInPopup
 
     test.beforeEach(async ({page})=>{

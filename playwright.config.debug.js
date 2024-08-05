@@ -31,14 +31,14 @@ const config =  defineConfig({
   forbidOnly: !!process.env.CI,
   maxFailures: 10,
   /* Retry on CI only */
-  retries: 1,
+  retries: 0,
   /* Opt out of parallel tests on CI. */
   workers: 3,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
     ['html', {open: process.env.CI ? 'never' : 'on-failure'}],
     [process.env.CI ? 'dot' : 'list'],
-    ["playwright-testrail-reporter"]
+    // ["playwright-testrail-reporter"]
     // [
     //   'playwright-qase-reporter',
     //   {
@@ -60,7 +60,7 @@ const config =  defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     testIdAttribute: 'data-qa',
-    headless: true,
+    headless: false,
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: appConfig.baseURL,
     httpCredentials: appConfig.httpCredentials,
@@ -79,10 +79,10 @@ const config =  defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    // {
-    //   name: "setup:stage",
-    //   testMatch: 'tests/setup/**/*.setup.js'
-    // },
+    {
+      name: "setup:stage",
+      testMatch: 'tests/setup/**/*.setup.js'
+    },
     // {
     //   name: 'teardown:stage',
     //   testMatch: 'tests/teardown/**/*.teardown.js'
@@ -106,6 +106,7 @@ const config =  defineConfig({
     // },
     {
       name: 'chromium',
+      dependencies: ['setup:stage'],
       use: {
         ...devices['Desktop Chrome'],
       },
