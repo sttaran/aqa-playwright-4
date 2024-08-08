@@ -1,7 +1,7 @@
 import {expect, test as setup} from "@playwright/test";
-import {USERS} from "../../src/data/users.js";
-import WelcomePage from "../../src/pageObjects/welcomePage/WelcomePage.js";
-import {USER1_STORAGE_STATE_PATH} from "../../src/data/constants.js";
+import {USERS} from "../../../src/data/users.js";
+import WelcomePage from "../../../src/pageObjects/welcomePage/WelcomePage.js";
+import {USER1_STORAGE_STATE_PATH} from "../../../src/data/constants.js";
 
 
 setup(`Login as ${USERS.USER1.email} and save storage state`, async ({page})=>{
