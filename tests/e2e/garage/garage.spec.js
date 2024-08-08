@@ -1,6 +1,6 @@
 import {expect, test} from "@playwright/test";
-import GaragePage from "../../src/pageObjects/garagePage/GaragePage.js";
-import {USER1_STORAGE_STATE_PATH} from "../../src/data/constants.js";
+import GaragePage from "../../../src/pageObjects/garagePage/GaragePage.js";
+import {USER1_STORAGE_STATE_PATH} from "../../../src/data/constants.js";
 
 
 
@@ -17,6 +17,11 @@ test.describe('Garage', () => {
         })
 
       test('should be able to open the garage', async () => {
+          test.info().annotations.push({
+              type: 'Known issue',
+              description: 'jira ticket link'
+          })
+
               await expect(garagePage.addCarButton).toBeVisible();
       });
 

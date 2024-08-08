@@ -3,7 +3,7 @@ import GaragePage from "../pageObjects/garagePage/GaragePage.js";
 import {USER1_STORAGE_STATE_PATH} from "../data/constants.js";
 
 export const loggedInAsUser = base.extend({
-    page: async ({browser}, use)=>{
+    page:[ async ({browser}, use)=>{
         const ctx = await browser.newContext({
             //  get from file
             storageState: USER1_STORAGE_STATE_PATH
@@ -13,8 +13,8 @@ export const loggedInAsUser = base.extend({
         await use(page)
 
         await page.close()
-    },
-    garagePage: async ({page}, use)=>{
+    }, { title: 'Creating page' }],
+    garagePage: [async ({page}, use)=>{
         // before test
         const gp = new GaragePage(page)
 
@@ -22,7 +22,7 @@ export const loggedInAsUser = base.extend({
         use(gp)
 
         // after test
-    },
+    }, { title: 'Creating GaragePage instance' }],
 })
 
 export const expect = baseExpect

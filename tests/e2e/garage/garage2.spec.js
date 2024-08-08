@@ -1,6 +1,6 @@
-import {loggedInAsUser, expect} from "../../src/fixtures/loggedInAsUser.js";
+import {loggedInAsUser, expect} from "../../../src/fixtures/loggedInAsUser.js";
 
-loggedInAsUser.describe.only('Garage', () => {
+loggedInAsUser.describe('Garage', () => {
     loggedInAsUser.beforeEach(async ({ garagePage}) => {
         await garagePage.navigate()
     })
