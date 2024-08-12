@@ -19,7 +19,7 @@ test.describe("Cars", ()=>{
         // }
     })
 
-    test.only("create car", async({request})=>{
+    test("create car", async({request})=>{
         const requestBody = {
             "carBrandId": 1,
             "carModelId": 1,
