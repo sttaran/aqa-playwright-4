@@ -2,6 +2,7 @@
 import { defineConfig, devices } from '@playwright/test'
 import dotenv from 'dotenv'
 import {config as appConfig} from "./config/config.js";
+import {USER1_STORAGE_STATE_PATH} from "./src/data/constants.js";
 
 /**
  * Read environment variables from file.
@@ -83,6 +84,14 @@ const config =  defineConfig({
       name: "setup:stage",
       testMatch: 'tests/setup/**/*.setup.js'
     },
+    {
+      name: 'chromium',
+      dependencies: ['setup:stage'],
+      use: {
+        ...devices['Desktop Chrome'],
+        // storageState: USER1_STORAGE_STATE_PATH
+      },
+    },
     // {
     //   name: 'teardown:stage',
     //   testMatch: 'tests/teardown/**/*.teardown.js'
@@ -104,13 +113,7 @@ const config =  defineConfig({
     //     baseURL: 'https://qauto2.forstudy.space/',
     //   },
     // },
-    {
-      name: 'chromium',
-      dependencies: ['setup:stage'],
-      use: {
-        ...devices['Desktop Chrome'],
-      },
-    },
+
     // {
     //   name: 'firefox',
     //   use: {
