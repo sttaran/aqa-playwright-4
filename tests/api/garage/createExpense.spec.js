@@ -2,7 +2,6 @@ import {expect, test} from "../../../src/fixtures/myFixtures.js";
 import {CAR_BRANDS} from "../../../src/data/cars.js";
 import {CAR_MODELS} from "../../../src/data/carModels.js";
 import { faker } from '@faker-js/faker';
-import ExpensesController from "../../../src/controllers/ExpensesController.js";
 
 
 test.describe("Create Expense", ()=>{

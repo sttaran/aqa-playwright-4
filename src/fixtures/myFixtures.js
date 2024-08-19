@@ -55,8 +55,9 @@ export const test = base.extend({
         }
         const response = await carsController.createCar(requestBody)
         const body = await response.json()
+        console.log(body)
         // pass to test
-        use(body.data)
+        await use(body.data)
 
         // after test
         await request.delete(`/api/cars/${body.id}`)
