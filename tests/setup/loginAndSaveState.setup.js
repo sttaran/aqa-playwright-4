@@ -20,13 +20,35 @@ setup(`Login as ${USERS.USER1.email} and save storage state`, async ({request})=
     //     path: USER1_STORAGE_STATE_PATH
     // })
 
-    await request.post('/api/auth/signin', {
+    const response = await request.post('/api/auth/signin', {
         data: {
             "email": USERS.USER1.email,
             "password": USERS.USER1.password,
             "remember": false
         }
     })
+
+    if(response.status() === 401){
+        const reqBody = {
+            "name": "John",
+            "lastName": "Dou",
+            "email": USERS.USER1.email,
+            "password": USERS.USER1.password,
+            "repeatPassword": USERS.USER1.password,
+        }
+            await request.post('/api/auth/signup', {
+                data: reqBody
+            })
+        await expect(response).toBeOK()
+
+        await request.post('/api/auth/signin', {
+            data: {
+                "email": USERS.USER1.email,
+                "password": USERS.USER1.password,
+                "remember": false
+            }
+        })
+    }
 
     await request.storageState({
         path: USER1_STORAGE_STATE_PATH
