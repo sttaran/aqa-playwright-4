@@ -4,7 +4,7 @@ on: push
 
 jobs:
   api-tests:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: "Checkout to tests repository"
         uses: actions/checkout@v4
@@ -16,7 +16,8 @@ jobs:
           ENV: 'dev'
           HTTP_CREDENTIALS_USERNAME: ${{ secrets.HTTP_CREDENTIALS_USERNAME }}
           HTTP_CREDENTIALS_PASSWORD: ${{ secrets.HTTP_CREDENTIALS_PASSWORD }}
-        run: docker-compose up --exit-code-from pw-tests
+        run: |
+          docker-compose up --exit-code-from pw-tests
       - name: "Upload report to artifacts"
         if: failure()
         uses: actions/upload-artifact@v4
