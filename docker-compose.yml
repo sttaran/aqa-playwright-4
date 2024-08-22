@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  pw-tests:
+    container_name: 'api-tests'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - CI=true
+      - HTTP_CREDENTIALS_USERNAME=guest
+      - HTTP_CREDENTIALS_PASSWORD=welcome2qauto
+    volumes:
+      - ./playwright-report:/tests/playwright-report
+    restart: 'on-failure'
+
+#  mysql:
+#    image: mysql:5.7
+#    container_name: mysql-tests
+#    environment:
+#      MYSQL_ROOT_PASSWORD: root
+#      MYSQL_DATABASE: test
+#    ports:
+#      - "3306:3306"
+#    restart: on-failure

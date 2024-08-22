@@ -32,9 +32,10 @@ const config =  defineConfig({
   workers: 3,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
-      ['html', {open: process.env.CI ? 'never' : 'on-failure'}],
-      [process.env.CI ? 'dot' : 'list'],
-    ['json', { outputFile: 'results.json' }],
+      // ['html', {open: process.env.CI ? 'never' : 'on-failure'}],
+      ['html']
+    //   [process.env.CI ? 'dot' : 'list'],
+    // ['json', { outputFile: 'results.json' }],
 
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
