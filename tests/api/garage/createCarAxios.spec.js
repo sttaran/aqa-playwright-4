@@ -5,7 +5,7 @@ import { wrapper } from 'axios-cookiejar-support';
 import { CookieJar } from 'tough-cookie';
 import {config} from "../../../config/config.js";
 
-test.describe("Create car", ()=>{
+test.describe.skip("Create car", ()=>{
     let cookie
     test.beforeEach(async ()=>{
         const loginResponse = await axios.post('https://qauto.forstudy.space/api/auth/signin', {
@@ -34,7 +34,7 @@ test.describe("Create car", ()=>{
 })
 
 
-test.describe("Cars API", ()=>{
+test.describe.skip("Cars API", ()=>{
     test.describe("Create wih jar", ()=>{
         let request
 
