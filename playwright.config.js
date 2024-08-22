@@ -33,7 +33,10 @@ const config =  defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
       // ['html', {open: process.env.CI ? 'never' : 'on-failure'}],
-      ['html']
+      ['html'],
+      [
+          process.env.CI ? 'github' : 'list'
+      ]
     //   [process.env.CI ? 'dot' : 'list'],
     // ['json', { outputFile: 'results.json' }],
 
