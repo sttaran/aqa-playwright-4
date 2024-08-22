@@ -1,8 +1,8 @@
 FROM mcr.microsoft.com/playwright:v1.46.0-jammy
 
-RUN mkdir playwright-tests
+RUN mkdir tests
 
-WORKDIR playwright-tests
+WORKDIR tests
 
 ENV HTTP_CREDENTIALS_USERNAME=guest
 ENV HTTP_CREDENTIALS_PASSWORD=welcome2qauto

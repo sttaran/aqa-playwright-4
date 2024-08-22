@@ -23,7 +23,7 @@ test.describe("Create Expense", ()=>{
         expect(expensesBody.status).toBe('ok')
     })
 
-    test.only(`Add an expense for ${carBrand.title} and model ${carModel.title} (with controller)`, async({expensesController, newCar: createdCar})=>{
+    test(`Add an expense for ${carBrand.title} and model ${carModel.title} (with controller)`, async({expensesController, newCar: createdCar})=>{
         const expenseRes = await expensesController.createExpense({
             "carId": createdCar.id,
             "reportedAt": new Date().toISOString(),
