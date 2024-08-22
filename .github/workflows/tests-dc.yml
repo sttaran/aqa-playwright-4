@@ -11,6 +11,9 @@ jobs:
         with:
           repository: '${{ github.repository }}'
           ref: ${{ github.ref }}
+      - uses: KengoTODA/actions-setup-docker-compose@v1
+        with:
+          version: '2.14.2' # the full version of `docker-compose` command
       - name: "Run tests"
         env:
           ENV: 'dev'
